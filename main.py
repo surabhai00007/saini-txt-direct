@@ -1337,6 +1337,43 @@ async def txt_handler(bot: Client, m: Message):
                         await m.reply_text(str(e))
                         time.sleep(e.x)
                         continue    
+
+                elif ".pdf" in url:
+    # pdf handling
+
+elif ".ws" in url and url.endswith(".ws"):
+    # html/ws handling
+
+elif any(ext in url for ext in [".jpg", ".jpeg", ".png"]):
+    # image handling
+
+elif any(ext in url for ext in [".mp3", ".wav", ".m4a"]):
+    # audio handling
+
+# 🔥 YAHAN PE ADD KARNA HAI (iske baad)
+elif ".m3u8" in url:
+    try:
+        Show = f"**⚡ Decrypting AES-128 HLS Stream...**\n🔗 {url}"
+        prog = await m.reply_text(Show)
+        filename = await decrypt_m3u8(url, namef)
+
+        if filename:
+            copy = await helper.send_vid(
+                bot, m, cc, filename, thumb, namef, prog, channel_id, watermark=watermark
+            )
+            count += 1
+            os.remove(filename)
+        else:
+            await bot.send_message(channel_id, f"❌ Failed to process HLS stream: {url}")
+
+    except FloodWait as e:
+        await m.reply_text(str(e))
+        time.sleep(e.x)
+        continue
+    except Exception as e:
+        await m.reply_text(f"⚠️ Error processing m3u8: {str(e)}")
+        continue
+
                     
                 elif 'encrypted.m' in url:    
                     remaining_links = len(links) - count
