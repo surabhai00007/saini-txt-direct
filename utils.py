@@ -104,3 +104,25 @@ async def progress_bar(current, total, reply, start): #NIKHIL SAINI BOTS
                 await reply.edit(f'<blockquote>`╭──⌯═════𝐁𝐨𝐭 𝐒𝐭𝐚𝐭𝐢𝐜𝐬══════⌯──╮\n├⚡ {progress_bar}\n├⚙️ Progress ➤ | {perc} |\n├🚀 Speed ➤ | {sp} |\n├📟 Processed ➤ | {cur} |\n├🧲 Size ➤ | {tot} |\n├🕑 ETA ➤ | {eta} |\n╰─═══✨🦋{CREDIT}🦋✨═══─╯`</blockquote>') 
             except FloodWait as e: #NIKHIL SAINI BOTS
                 time.sleep(e.x) #NIKHIL SAINI BOTS 
+
+import subprocess
+
+async def decrypt_m3u8(url, name):
+    """
+    Download & decrypt AES-128 HLS stream (.m3u8)
+    """
+    try:
+        output = f"{name}.mp4"
+        cmd = [
+            "ffmpeg",
+            "-protocol_whitelist", "file,http,https,tcp,tls,crypto",
+            "-i", url,
+            "-c", "copy",
+            output
+        ]
+        subprocess.run(cmd, check=True)
+        return output
+    except Exception as e:
+        print(f"[decrypt_m3u8 ERROR] {e}")
+        return None
+
