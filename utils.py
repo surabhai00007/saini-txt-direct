@@ -1,5 +1,6 @@
 import random #NIKHIL SAINI BOTS
 import time #NIKHIL SAINI BOTS
+import subprocess
 import math #NIKHIL SAINI BOTS
 import os #NIKHIL SAINI BOTS
 from vars import CREDIT #NIKHIL SAINI BOTS
